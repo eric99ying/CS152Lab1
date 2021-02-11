@@ -29,6 +29,7 @@ n_brjmp_instructions = 0 # Total branch/jump instructions retired while collecti
 n_misc_instructions = 0  # All other instructions retired while collecting_stats == True
 n_bubbles = 0            # Total cycles where no instruction was committed while collecting_stats == True
 n_cycles = 0             # Total cycles where collecting_stats == True
+n_ldst_nonzero_offset_instructions = 0  # Total instructions with nonzero offset load/stores
 
 # Use Regex to decode and read each line of the trace
 if args.ucode:
@@ -133,6 +134,16 @@ for line in args.file:
                     n_misc_instructions += 1
 
                 # TODO: Track more types of instructions here?
+                if inst.opcode in LD_OPCODES:
+                    imm_bits  = inst[20:31]
+                    if imm_bits != 0:
+                        n_ldst_nonzero_offset_instructions += 1        
+                elif inst.opcode in ST_OPCODES:
+                    bits711 = inst[7:11]
+                    bits2531 = inst[25:31]
+                    imm_bits = bits2531 << 5 + bits711
+                    if imm_bits != 0:
+                        n_ldst_nonzero_offset_instructions += 1
 
                 # Example code showing how to slice some bits out of each Instruction object
                 # Bits 0-6 correspond to the opcode of instructions. Notice that inst[0:6] is 7
@@ -161,6 +172,7 @@ Bubbles      : {bubbles}
 Instruction Breakdown:
 % Arithmetic  : {arith:.3f} %
 % Ld/St       : {ldst:.3f} %
+% Ld/St Nonzero Offset : {ldstnz:.3f} %
 % Branch/Jump : {brjmp:.3f} %
 % Misc.       : {misc:.3f} %
 """.format(cpi=n_cycles / n_instructions,
@@ -170,5 +182,6 @@ Instruction Breakdown:
            bubbles=n_bubbles,
            arith=100 * n_arith_instructions / n_instructions,
            ldst=100 * n_ldst_instructions / n_instructions,
+           ldstnz=100 * n_ldst_nonzero_offset_instructions / n_instructions,
            brjmp=100 * n_brjmp_instructions / n_instructions,
            misc=100 * n_misc_instructions / n_instructions))
