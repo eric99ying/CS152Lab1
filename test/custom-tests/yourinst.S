@@ -16,12 +16,13 @@ RVTEST_RV64U
 RVTEST_CODE_BEGIN
 
 # FIXME: Add your tests here
+# .word 0x0020818b; \
 # See the tests in movn.S for examples
-  TEST_CASE(4, x4, 	11, \
+  TEST_CASE(1, x4, 	0x0000000a, \
   	la x1, arr1_1; \
 	la x2, arr2_1; \
 	li x3, 2; \
-	.word 0x002081d7; \
+    .word 0x0020818b; \
 	la x1, arr1_1; \
 	lw x4, 0(x1); \
   ) 

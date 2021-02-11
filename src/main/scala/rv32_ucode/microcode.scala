@@ -424,8 +424,8 @@ object Microcode
 
    /* TODO: Add the microcode for your custom instruction here */
 
-   /* A <- Reg[rd]    */,Label("ADDV")  ,   Signals(Cat(CSR.N, LDIR_0, RS_RD,  RWR_0, REN_1, LDA_1, LDB_X, ALU_X      , AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
-   /* Branch if A == 0 */,                  Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_0, LDB_X, ALU_COPY_A , AEN_1, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_EZ), "FETCH")
+   /* A <- Reg[rd]    */,Label("CUSTOM0")  ,   Signals(Cat(CSR.N, LDIR_0, RS_RD,  RWR_0, REN_1, LDA_1, LDB_X, ALU_X      , AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
+   /* Branch if A == 0 */,                  Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_0, LDB_X, ALU_COPY_A , AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_EZ), "FETCH")
    /* ubr to FETCH     */
    /* Reg[rd] <- A - 1 */,                  Signals(Cat(CSR.N, LDIR_0, RS_RD , RWR_1, REN_0, LDA_0, LDB_X, ALU_DEC_A_1, AEN_1, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
    
@@ -440,7 +440,7 @@ object Microcode
    /* A <- Mem     */,                      Signals(Cat(CSR.N, LDIR_0, RS_X ,  RWR_0, REN_0, LDA_1, LDB_0, ALU_X ,      AEN_0, LDMA_0, MWR_0, MEN_1, MT_X , IS_X , IEN_0, UBR_S), "X")
    
    /* Mem <- A + B    */,                   Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_0, LDB_0, ALU_ADD    , AEN_1, LDMA_0, MWR_1, MEN_0, MT_X , IS_X , IEN_0, UBR_S), "X")
-   /* Jump to addv */,                      Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_X, LDB_X, ALU_X,       AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_J), "ADDV")
+   /* Jump to addv */,                      Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_X, LDB_X, ALU_X,       AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_J), "CUSTOM0")
    /* ubr to ADDV     */
 
  )
