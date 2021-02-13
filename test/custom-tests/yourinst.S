@@ -16,16 +16,16 @@ RVTEST_RV64U
 RVTEST_CODE_BEGIN
 
 # FIXME: Add your tests here
-# .word 0x0020818b; \
 # See the tests in movn.S for examples
-  TEST_CASE(1, x4, 	0x0000000a, \
-  	la x1, arr1_1; \
-	la x2, arr2_1; \
-	li x3, 2; \
-    .word 0x0020818b; \
-	la x1, arr1_1; \
-	lw x4, 0(x1); \
-  ) 
+
+TEST_CASE(3, x7, 0x0000000b, \
+li x6, 2; \
+la x7, arr1; \
+la x28, arr3; \
+.word 0x01c3830b; \
+la x7, arr1; \
+lw x7, 0(x7); \
+)
 
   TEST_PASSFAIL
 
@@ -36,9 +36,10 @@ RVTEST_DATA_BEGIN
 
   TEST_DATA
 
-arr1_1: .word 0x00000006
-arr1_2: .word 0x0000000a
-arr2_1: .word 0x00000005
-arr2_2: .word 0x0000000a
+arr1: .word 0x00000006
+arr2: .word 0x00000004
+arr3: .word 0x00000005
+arr4: .word 0x00000002
+
 
 RVTEST_DATA_END
