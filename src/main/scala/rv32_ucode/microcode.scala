@@ -433,17 +433,17 @@ object Microcode
    /* A <- Reg[rs2]    */,                  Signals(Cat(CSR.N, LDIR_0, RS_RS2, RWR_0, REN_1, LDA_1, LDB_X, ALU_X      , AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
    /* Reg[rs2] <- A + 4 */,                 Signals(Cat(CSR.N, LDIR_0, RS_RS2, RWR_1, REN_0, LDA_0, LDB_X, ALU_INC_A_4, AEN_1, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
    /* MA <- A        */,                    Signals(Cat(CSR.N, LDIR_0, RS_X  , RWR_0, REN_0, LDA_0, LDB_X, ALU_COPY_A,  AEN_1, LDMA_1, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
-   /* B <- Mem     */,                      Signals(Cat(CSR.N, LDIR_0, RS_X ,  RWR_0, REN_0, LDA_X, LDB_1, ALU_X ,      AEN_0, LDMA_0, MWR_0, MEN_1, MT_X , IS_X , IEN_0, UBR_S), "X")
+   /* B <- Mem     */,                      Signals(Cat(CSR.N, LDIR_0, RS_X ,  RWR_0, REN_0, LDA_X, LDB_1, ALU_X ,      AEN_0, LDMA_0, MWR_0, MEN_1, MT_W , IS_X , IEN_0, UBR_S), "X")
 
     /* A <- Reg[rs1]    */,                 Signals(Cat(CSR.N, LDIR_0, RS_RS1, RWR_0, REN_1, LDA_1, LDB_0, ALU_X      , AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
    /* Reg[rs1] <- A + 4 */,                 Signals(Cat(CSR.N, LDIR_0, RS_RS1, RWR_1, REN_0, LDA_0, LDB_0, ALU_INC_A_4, AEN_1, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
    /* MA <- A        */,                    Signals(Cat(CSR.N, LDIR_0, RS_X  , RWR_0, REN_0, LDA_0, LDB_0, ALU_COPY_A,  AEN_1, LDMA_1, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_N), "X")
-   /* A <- Mem     */,                      Signals(Cat(CSR.N, LDIR_0, RS_X ,  RWR_0, REN_0, LDA_1, LDB_0, ALU_X ,      AEN_0, LDMA_0, MWR_0, MEN_1, MT_X , IS_X , IEN_0, UBR_S), "X")
+   /* A <- Mem     */,                      Signals(Cat(CSR.N, LDIR_0, RS_X ,  RWR_0, REN_0, LDA_1, LDB_0, ALU_X ,      AEN_0, LDMA_0, MWR_0, MEN_1, MT_W , IS_X , IEN_0, UBR_S), "X")
    
-   /* Mem <- A + B    */,                   Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_0, LDB_0, ALU_ADD    , AEN_1, LDMA_0, MWR_1, MEN_0, MT_X , IS_X , IEN_0, UBR_S), "X")
+   /* Mem <- A + B    */,                   Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_0, LDB_0, ALU_ADD    , AEN_1, LDMA_0, MWR_1, MEN_0, MT_W , IS_X , IEN_0, UBR_S), "X")
 
 
-   /* Jump to addv */,                      Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_X, LDB_X, ALU_X,       AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_J), "FETCH")
+   /* Jump to addv */,                      Signals(Cat(CSR.N, LDIR_0, RS_X,   RWR_0, REN_0, LDA_X, LDB_X, ALU_X,       AEN_0, LDMA_X, MWR_0, MEN_0, MT_X , IS_X , IEN_0, UBR_J), "CUSTOM0")
    
 
  )

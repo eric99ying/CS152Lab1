@@ -27,6 +27,16 @@ la x7, arr1; \
 lw x7, 0(x7); \
 )
 
+
+TEST_CASE(4, x7, 0x00000006, \
+li x6, 2; \
+la x7, arr1; \
+la x28, arr3; \
+.word 0x01c3830b; \
+la x7, arr1; \
+lw x7, 4(x7); \
+)
+
   TEST_PASSFAIL
 
 RVTEST_CODE_END
@@ -37,9 +47,9 @@ RVTEST_DATA_BEGIN
   TEST_DATA
 
 arr1: .word 0x00000006
-arr2: .word 0x00000004
+      .word 0x00000004
 arr3: .word 0x00000005
-arr4: .word 0x00000002
+      .word 0x00000002
 
 
 RVTEST_DATA_END
